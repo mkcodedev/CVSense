@@ -47,7 +47,8 @@ The platform identifies missing skills, estimates profile compatibility, generat
 
 ## Home
 
-<img src="./assets/home.png" width="100%">
+<img width="1536" height="679" alt="4" src="https://github.com/user-attachments/assets/5cc2588b-b982-4bbd-b4d0-bb9800ecf614" />
+
 
 Users can:
 
@@ -59,8 +60,12 @@ Users can:
 ---
 
 ## Preparation Roadmap
+<img width="1500" height="679" alt="3" src="https://github.com/user-attachments/assets/c763d6bb-0a14-455a-86c0-df4453a24271" />
 
-<img src="./assets/roadmap.png" width="100%">
+
+<img width="1503" height="687" alt="Screenshot 2026-08-03 183445" src="https://github.com/user-attachments/assets/904cdbc9-c705-4787-83c6-130d76014cc1" />
+
+
 
 CVSense creates a personalized roadmap that includes:
 
@@ -74,7 +79,7 @@ CVSense creates a personalized roadmap that includes:
 
 ## Behavioral Questions
 
-<img src="./assets/behavioral.png" width="100%">
+<img width="1467" height="685" alt="2" src="https://github.com/user-attachments/assets/f82d23f8-6b84-4cc2-800b-2c9f7e5882d6" />
 
 AI generates personalized behavioral interview questions based on:
 

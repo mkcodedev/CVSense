@@ -1,9 +1,0 @@
-{
-  "name": "cvsense-workspace",
-  "private": true,
-  "scripts": {
-    "dev": "npm --prefix Backend run dev",
-    "dev:backend": "npm --prefix Backend run dev",
-    "dev:frontend": "npm --prefix Frontend run dev"
-  }
-}

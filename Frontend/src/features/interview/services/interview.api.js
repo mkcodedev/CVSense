@@ -1,4 +1,11 @@
-import { api } from "../../../lib/api"
+import axios from "axios";
+
+const apiBaseURL = import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || "https://cvsense-qwv2.onrender.com"
+
+const api = axios.create({
+    baseURL: apiBaseURL,
+    withCredentials: true,
+})
 
 
 /**

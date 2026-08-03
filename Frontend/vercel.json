@@ -1,7 +1,4 @@
 {
-  "env": {
-    "VITE_API_BASE_URL": "https://cvsense-qwv2.onrender.com"
-  },
   "rewrites": [
     {
       "source": "/(.*)",

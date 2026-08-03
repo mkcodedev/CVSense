@@ -1,0 +1,30 @@
+.button{
+
+    border: none;
+    outline: none;
+    padding-inline: 1.5rem;
+    padding-block: 0.75rem;
+    border-radius: 1rem;
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+
+    &.primary-button{
+        background-color: #e1034d;
+        color: white;
+    }
+
+    &.secondary-button{
+        background-color: transparent;
+        color: #f6c945;
+        border: 1px solid rgba(246, 201, 69, 0.35);
+
+        &:hover{
+            background-color: rgba(246, 201, 69, 0.08);
+        }
+    }
+
+    &:active{
+        transform: scale(0.9);
+    }
+}

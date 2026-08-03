@@ -1,0 +1,59 @@
+@use "./style/button.scss";
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    width: 100%;
+    background-color: #161616;
+    color: whitesmoke;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 3rem;
+}
+
+.site-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    width: 100%;
+    padding: 0.7rem 1rem;
+    background: #f6d34f;
+    color: #111;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+
+    &__label {
+        flex-shrink: 0;
+        color: #d61f45;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    &__text {
+        flex: 1;
+        font-size: 0.92rem;
+        line-height: 1.35;
+        color: #111;
+    }
+}
+
+.highlight{
+    color: #d20d3b;
+}

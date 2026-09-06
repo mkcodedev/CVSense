@@ -22,7 +22,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const loggedInUser = await handleLogin({email,password})
-        if (loggedInUser) navigate('/')
+        if (loggedInUser) navigate('/dashboard')
     }
 
     return (

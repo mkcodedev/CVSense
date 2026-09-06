@@ -1,7 +1,5 @@
 import React from "react"
 import { Link } from "react-router"
-import { useAuth } from "../auth/hooks/useAuth"
-import Home from "../interview/pages/Home"
 import "./landing.scss"
 
 const FeatureIcon = ({ children }) => <span className="feature-icon" aria-hidden="true">{children}</span>
@@ -90,9 +88,4 @@ const Landing = () => {
     )
 }
 
-const LandingEntry = () => {
-    const { user } = useAuth()
-    return user ? <Home /> : <Landing />
-}
-
-export default LandingEntry
+export default Landing

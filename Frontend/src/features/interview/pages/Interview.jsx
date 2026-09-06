@@ -206,7 +206,7 @@ const Interview = () => {
                 <button
                     type='button'
                     className='interview-close-btn'
-                    onClick={() => navigate('/')}
+                    onClick={() => navigate('/dashboard')}
                     aria-label='Close interview details'
                 >
                     ×

@@ -1,12 +1,14 @@
 import { getAllInterviewReports, generateInterviewReport, getInterviewReportById, generateResumePdf } from "../services/interview.api"
 import { useContext, useEffect, useState } from "react"
 import { InterviewContext } from "../interview.context"
+import { AuthContext } from "../../auth/auth.context"
 import { useParams } from "react-router"
 
 
 export const useInterview = () => {
 
     const context = useContext(InterviewContext)
+    const { notify } = useContext(AuthContext)
     const { interviewId } = useParams()
     const [ downloadingResume, setDownloadingResume ] = useState(false)
 
@@ -22,8 +24,9 @@ export const useInterview = () => {
         try {
             response = await generateInterviewReport({ jobDescription, selfDescription, resumeFile })
             setReport(response.interviewReport)
+            notify("Interview strategy generated", "success")
         } catch (error) {
-            console.log(error)
+            notify(error.response?.data?.message || "Could not generate your interview strategy.", "error")
         } finally {
             setLoading(false)
         }

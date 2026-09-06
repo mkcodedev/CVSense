@@ -62,6 +62,11 @@ form { display: flex; flex-direction: column; gap: 1.1rem; }
 .input-group input { width: 100%; border: 1px solid $auth-border; outline: none; padding: 0.85rem 1rem; border-radius: 0.55rem; background: #1a2435; color: #f4f7fb; font: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
 .input-group input::placeholder { color: #68788f; }
 .input-group input:focus { border-color: $auth-pink; box-shadow: 0 0 0 3px rgba(255, 45, 120, 0.14); }
+.password-field { position: relative; }
+.password-field input { padding-right: 4.5rem; }
+.password-toggle { position: absolute; top: 50%; right: 0.8rem; transform: translateY(-50%); border: 0; background: transparent; color: $auth-muted; cursor: pointer; font-size: 0.75rem; font-weight: 700; }
+.password-toggle:hover { color: $auth-pink; }
+.password-status { display: block; margin-top: 0.35rem; color: #f6c945; font-size: 0.72rem; }
 .auth-submit { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 0.35rem; border-radius: 0.55rem !important; }
 .auth-switch { margin: 0; text-align: center; font-size: 0.85rem; }
 .auth-switch a { color: $auth-pink; font-weight: 700; text-decoration: none; }

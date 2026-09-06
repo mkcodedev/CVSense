@@ -11,6 +11,7 @@ const Login = () => {
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
     const [ demoSelected, setDemoSelected ] = useState(false)
+    const [ showPassword, setShowPassword ] = useState(false)
 
     const useDemoLogin = () => {
         setEmail("test@gmail.com")
@@ -56,11 +57,17 @@ const Login = () => {
                     </div>
                     <div className="input-group">
                         <label htmlFor="password">Password</label>
-                        <input
-                            required
-                            value={password}
-                            onChange={(e) => { setPassword(e.target.value) }}
-                            type="password" id="password" name='password' autoComplete="current-password" placeholder='Enter your password' />
+                        <div className="password-field">
+                            <input
+                                required
+                                value={password}
+                                onChange={(e) => { setPassword(e.target.value) }}
+                                type={showPassword ? "text" : "password"} id="password" name='password' autoComplete="current-password" placeholder='Enter your password' />
+                            <button type="button" className="password-toggle" onClick={() => setShowPassword(current => !current)} aria-label={showPassword ? "Hide password" : "Show password"}>
+                                {showPassword ? "Hide" : "Show"}
+                            </button>
+                        </div>
+                        {demoSelected && <small className="password-status">Password filled from test login</small>}
                     </div>
                     <button className='button primary-button auth-submit' type="submit">Login <span aria-hidden="true">-&gt;</span></button>
                 </form>

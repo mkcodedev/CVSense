@@ -7,7 +7,13 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: ["http://localhost:5173", "https://cv-sense.vercel.app"],
+    origin: (origin, callback) => {
+        const allowedOrigins = ["http://localhost:5173", "http://127.0.0.1:5173", "https://cv-sense.vercel.app"]
+        if (!origin || allowedOrigins.includes(origin) || origin.endsWith(".vercel.app")) {
+            return callback(null, true)
+        }
+        return callback(new Error("Origin is not allowed by CORS"))
+    },
     credentials: true
 }))
 

@@ -18,10 +18,6 @@ const Register = () => {
         if (registeredUser) navigate("/")
     }
 
-    if(loading){
-        return (<main className="auth-page"><div className="auth-loading" role="status"><span className="auth-spinner" />Creating your account...</div></main>)
-    }
-
     return (
         <main className="auth-page">
             <div className="auth-layout">
@@ -60,7 +56,9 @@ const Register = () => {
                             type="password" id="password" name='password' autoComplete="new-password" placeholder='Create a password' />
                     </div>
 
-                    <button className='button primary-button auth-submit' type="submit">Register <span aria-hidden="true">-&gt;</span></button>
+                    <button className='button primary-button auth-submit' type="submit" disabled={loading}>
+                        {loading ? "Creating your account..." : <>Register <span aria-hidden="true">-&gt;</span></>}
+                    </button>
 
                 </form>
 

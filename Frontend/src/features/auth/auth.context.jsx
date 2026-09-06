@@ -1,4 +1,5 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { getMe } from "./services/auth.api";
 
 
 export const AuthContext = createContext()
@@ -7,8 +8,28 @@ export const AuthContext = createContext()
 export const AuthProvider = ({ children }) => { 
 
     const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
+    const [checkingSession, setCheckingSession] = useState(true)
     const [notifications, setNotifications] = useState([])
+
+    useEffect(() => {
+        let mounted = true
+
+        getMe()
+            .then(data => {
+                if (mounted) setUser(data.user)
+            })
+            .catch(() => {
+                if (mounted) setUser(null)
+            })
+            .finally(() => {
+                if (mounted) setCheckingSession(false)
+            })
+
+        return () => {
+            mounted = false
+        }
+    }, [])
 
     const notify = (message, type = "info") => {
         const id = Date.now() + Math.random()
@@ -22,7 +43,7 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ user, setUser, loading, setLoading, notifications, notify }} >
+        <AuthContext.Provider value={{ user, setUser, loading, setLoading, checkingSession, notifications, notify }} >
             {children}
         </AuthContext.Provider>
     )

@@ -25,11 +25,6 @@ const Login = () => {
         if (loggedInUser) navigate('/')
     }
 
-    if(loading){
-        return (<main className="auth-page"><div className="auth-loading" role="status"><span className="auth-spinner" />Checking your account...</div></main>)
-    }
-
-
     return (
         <main className="auth-page">
             <div className="auth-layout">
@@ -69,7 +64,9 @@ const Login = () => {
                         </div>
                         {demoSelected && <small className="password-status">Password filled from test login</small>}
                     </div>
-                    <button className='button primary-button auth-submit' type="submit">Login <span aria-hidden="true">-&gt;</span></button>
+                    <button className='button primary-button auth-submit' type="submit" disabled={loading}>
+                        {loading ? "Checking your account..." : <>Login <span aria-hidden="true">-&gt;</span></>}
+                    </button>
                 </form>
                 <button
                     type="button"

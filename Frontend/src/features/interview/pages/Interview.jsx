@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import '../style/interview.scss'
 import { useInterview } from '../hooks/useInterview.js'
 import { useNavigate, useParams } from 'react-router'
@@ -7,9 +7,11 @@ import { useAuth } from '../../auth/hooks/useAuth.js'
 
 
 const NAV_ITEMS = [
+    { id: 'overview', label: 'Strategy Overview', icon: (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /></svg>) },
     { id: 'technical', label: 'Technical Questions', icon: (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>) },
     { id: 'behavioral', label: 'Behavioral Questions', icon: (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>) },
     { id: 'roadmap', label: 'Road Map', icon: (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11" /></svg>) },
+    { id: 'toolkit', label: 'Interview Toolkit', icon: (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9" /><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z" /><path d="m15 5 3 3" /></svg>) },
 ]
 
 // ── Sub-components ────────────────────────────────────────────────────────────
@@ -57,21 +59,127 @@ const RoadMapDay = ({ day }) => (
     </div>
 )
 
+const Overview = ({ report, scoreColor, onOpenSection }) => {
+    const technicalCount = report.technicalQuestions.length
+    const behavioralCount = report.behavioralQuestions.length
+    const roadmapCount = report.preparationPlan.length
+    const topGaps = report.skillGaps.slice(0, 3)
+    const nextDay = report.preparationPlan[0]
+    const priorityWidth = { high: 38, medium: 64, low: 86 }
+
+    return (
+        <section className='overview-section'>
+            <div className='overview-hero'>
+                <div>
+                    <p className='overview-kicker'>Your interview command center</p>
+                    <h2>{report.title || 'Interview strategy'}</h2>
+                    <p className='overview-summary'>A focused plan built from your target role, profile, and the areas that will move your readiness fastest.</p>
+                </div>
+                <div className={`overview-score ${scoreColor}`}>
+                    <span className='overview-score__value'>{report.matchScore}</span>
+                    <span className='overview-score__label'>match score</span>
+                </div>
+            </div>
+
+            <div className='metric-grid'>
+                <button type='button' className='metric-card' onClick={() => onOpenSection('technical')}>
+                    <span className='metric-card__number'>{technicalCount}</span>
+                    <span className='metric-card__label'>Technical drills</span>
+                    <span className='metric-card__hint'>Build depth</span>
+                </button>
+                <button type='button' className='metric-card' onClick={() => onOpenSection('behavioral')}>
+                    <span className='metric-card__number'>{behavioralCount}</span>
+                    <span className='metric-card__label'>Behavioral prompts</span>
+                    <span className='metric-card__hint'>Tell your story</span>
+                </button>
+                <button type='button' className='metric-card' onClick={() => onOpenSection('roadmap')}>
+                    <span className='metric-card__number'>{roadmapCount}</span>
+                    <span className='metric-card__label'>Days to prepare</span>
+                    <span className='metric-card__hint'>Follow the path</span>
+                </button>
+                <button type='button' className='metric-card' onClick={() => onOpenSection('toolkit')}>
+                    <span className='metric-card__number'>{report.skillGaps.length}</span>
+                    <span className='metric-card__label'>Focus areas</span>
+                    <span className='metric-card__hint'>Close the gaps</span>
+                </button>
+            </div>
+
+            <div className='overview-grid'>
+                <div className='insight-panel'>
+                    <div className='panel-title-row'>
+                        <div>
+                            <p className='panel-eyebrow'>Priority map</p>
+                            <h3>Where to spend your energy</h3>
+                        </div>
+                        <span className='panel-title-icon'>01</span>
+                    </div>
+                    {topGaps.length > 0 ? topGaps.map((gap) => (
+                        <div className='gap-row' key={gap.skill}>
+                            <div className='gap-row__top'><strong>{gap.skill}</strong><span className={`severity severity--${gap.severity}`}>{gap.severity} priority</span></div>
+                            <div className='gap-row__track'><span className={`gap-row__fill gap-row__fill--${gap.severity}`} style={{ width: `${priorityWidth[gap.severity] || 64}%` }} /></div>
+                        </div>
+                    )) : <p className='empty-copy'>No skill gaps were identified. Use the toolkit to sharpen your strongest stories.</p>}
+                    <button type='button' className='text-action' onClick={() => onOpenSection('toolkit')}>Open focus toolkit <span aria-hidden='true'>-&gt;</span></button>
+                </div>
+
+                <div className='insight-panel insight-panel--accent'>
+                    <div className='panel-title-row'>
+                        <div>
+                            <p className='panel-eyebrow'>Recommended next</p>
+                            <h3>{nextDay ? `Day ${nextDay.day}: ${nextDay.focus}` : 'Start with your first drill'}</h3>
+                        </div>
+                        <span className='panel-title-icon'>02</span>
+                    </div>
+                    <p className='next-copy'>{nextDay ? 'Turn the plan into momentum with these first actions.' : 'Pick a question set and rehearse one answer out loud.'}</p>
+                    <ul className='next-list'>
+                        {(nextDay?.tasks || ['Choose one technical question to answer aloud', 'Prepare a concise STAR story', 'Review the highest-priority skill gap']).slice(0, 3).map((task) => (
+                            <li key={task}><span className='check-dot'>+</span>{task}</li>
+                        ))}
+                    </ul>
+                    <button type='button' className='text-action' onClick={() => onOpenSection(nextDay ? 'roadmap' : 'toolkit')}>View full plan <span aria-hidden='true'>-&gt;</span></button>
+                </div>
+            </div>
+        </section>
+    )
+}
+
+const Toolkit = ({ report, onOpenSection }) => (
+    <section>
+        <div className='content-header'>
+            <div><p className='panel-eyebrow'>Practice mode</p><h2>Interview Toolkit</h2></div>
+            <span className='content-header__count'>Ready when you are</span>
+        </div>
+        <div className='toolkit-grid'>
+            <button type='button' className='tool-card' onClick={() => onOpenSection('technical')}>
+                <span className='tool-card__icon'>&lt;/&gt;</span><strong>Technical sprint</strong>
+                <span>Run through {report.technicalQuestions.length} role-specific questions and compare your answer with the model approach.</span>
+                <em>Start sprint -&gt;</em>
+            </button>
+            <button type='button' className='tool-card' onClick={() => onOpenSection('behavioral')}>
+                <span className='tool-card__icon'>STAR</span><strong>Story builder</strong>
+                <span>Shape {report.behavioralQuestions.length} behavioral answers around a clear situation, action, and result.</span>
+                <em>Build stories -&gt;</em>
+            </button>
+            <button type='button' className='tool-card' onClick={() => onOpenSection('roadmap')}>
+                <span className='tool-card__icon'>7D</span><strong>Readiness runway</strong>
+                <span>Use your {report.preparationPlan.length}-day roadmap to turn preparation into small, repeatable sessions.</span>
+                <em>Open roadmap -&gt;</em>
+            </button>
+        </div>
+        <div className='toolkit-callout'>
+            <strong>Interview ritual</strong>
+            <span>Pick one prompt, answer in two minutes, then rewrite only the weakest part. Repeat daily until the answer feels natural.</span>
+        </div>
+    </section>
+)
+
 // ── Main Component ────────────────────────────────────────────────────────────
 const Interview = () => {
-    const [ activeNav, setActiveNav ] = useState('technical')
-    const { report, getReportById, loading, downloadingResume, getResumePdf } = useInterview()
+    const [ activeNav, setActiveNav ] = useState('overview')
+    const { report, loading, downloadingResume, getResumePdf } = useInterview()
     const { handleLogout } = useAuth()
     const navigate = useNavigate()
     const { interviewId } = useParams()
-
-    useEffect(() => {
-        if (interviewId) {
-            getReportById(interviewId)
-        }
-    }, [ interviewId ])
-
-
 
     if (loading || !report) {
         return (
@@ -139,6 +247,8 @@ const Interview = () => {
 
                 {/* ── Center Content ── */}
                 <main className='interview-content'>
+                    {activeNav === 'overview' && <Overview report={report} scoreColor={scoreColor} onOpenSection={setActiveNav} />}
+
                     {activeNav === 'technical' && (
                         <section>
                             <div className='content-header'>
@@ -180,6 +290,8 @@ const Interview = () => {
                             </div>
                         </section>
                     )}
+
+                    {activeNav === 'toolkit' && <Toolkit report={report} onOpenSection={setActiveNav} />}
                 </main>
 
                 <div className='interview-divider' />

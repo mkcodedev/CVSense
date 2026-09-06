@@ -21,9 +21,18 @@ const Heading = ({ eyebrow, title, copy, centered = false }) => (
 
 const Landing = () => {
     const [menuOpen, setMenuOpen] = useState(false)
+    const [selectedRole, setSelectedRole] = useState("Software Engineer")
     const closeMenu = () => setMenuOpen(false)
     const roles = ["Software Engineer", "Frontend Developer", "Backend Developer", "Full Stack Developer", "Internship", "Career Switcher"]
     const roadmap = ["Resume analysis", "Core skills", "React architecture", "System design", "Behavioral practice", "Mock interview", "Final review"]
+    const roleFocus = {
+        "Software Engineer": "system design and scalable APIs",
+        "Frontend Developer": "React architecture and performance",
+        "Backend Developer": "data modeling and service design",
+        "Full Stack Developer": "end-to-end product decisions",
+        Internship: "core concepts and project walkthroughs",
+        "Career Switcher": "transferable experience and fundamentals"
+    }
 
     return (
         <main className="landing-page">
@@ -68,7 +77,11 @@ const Landing = () => {
 
             <section className="landing-section roadmap-section"><Heading eyebrow="Personalized roadmap" title="Turn preparation into a plan you can actually follow." copy="Small, role-specific steps create better preparation than an endless list of topics." /><ProductFrame className="roadmap-product"><div className="roadmap-product__top"><div><small>YOUR 7-DAY PLAN</small><strong>Preparation runway</strong></div><span>01 / 07</span></div><div className="timeline">{roadmap.map((item, index) => <div className={`timeline-day timeline-day--${index < 2 ? 'done' : index === 2 ? 'current' : 'upcoming'}`} key={item}><i>{index < 2 ? '✓' : index + 1}</i><small>DAY 0{index + 1}</small><strong>{item}</strong></div>)}</div><Link className="button-primary" to="/register">Start your personalized roadmap <span>-&gt;</span></Link></ProductFrame></section>
 
-            <section className="landing-section paths-section"><Heading eyebrow="Built around your role" title="One platform. Different interview paths." copy="Preparation changes based on the role, so your plan should too." /><div className="paths-grid">{roles.map((path, index) => <Link to="/register" className={`path-card ${index === 0 ? 'path-card--active' : ''}`} key={path}><span>0{index + 1}</span><strong>{path}</strong><i>-&gt;</i></Link>)}</div></section>
+            <section className="landing-section paths-section"><Heading eyebrow="Built around your role" title="One platform. Different interview paths." copy="Preparation changes based on the role, so your plan should too." /><div className="paths-layout"><div className="paths-grid">{roles.map((path, index) => <button type="button" className={`path-card ${selectedRole === path ? 'path-card--active' : ''}`} onClick={() => setSelectedRole(path)} key={path}><span>0{index + 1}</span><strong>{path}</strong><i>-&gt;</i></button>)}</div><ProductFrame className="role-preview"><div className="bento-label">CURRENT PREPARATION EMPHASIS <span>AI-SELECTED</span></div><strong>{selectedRole}</strong><p>Prioritize <b>{roleFocus[selectedRole]}</b> in your preparation plan.</p><div className="role-preview__tags"><span>Role context</span><span>Skill gaps</span><span>Practice plan</span></div><Link className="text-link" to="/register">Build this plan <span>-&gt;</span></Link></ProductFrame></div></section>
+
+            <section className="landing-section education-section"><div><Heading eyebrow="Why preparation should be specific" title="Your time is limited. Your preparation should know where to spend it." copy="A candidate preparing for a frontend role should not spend the same amount of time on every possible interview topic. Resume, experience, projects, and target role should determine what deserves attention." /></div><div className="education-compare"><div><small>GENERIC PREPARATION</small><p><b>100</b> topics</p><p><b>—</b> No priority</p><p><b>—</b> No context</p></div><span className="education-equals">+</span><div className="education-focused"><small>CVSENSE</small><p><b>Your</b> background</p><p><b>+</b> Target role</p><p><b>=</b> Focused preparation</p></div></div></section>
+
+            <section className="trust-section"><Heading centered eyebrow="A clearer way to prepare" title="Personalized. Context-aware. Actionable." copy="CVSense keeps the focus on your role and your next best action, without pretending to replace your judgment." /><div className="trust-list"><span>Resume + role context</span><span>AI-powered analysis</span><span>Actionable next steps</span></div></section>
 
             <section className="workflow-band"><Heading centered eyebrow="The complete workflow" title="Your resume and role, connected to what comes next." /><div className="workflow-line">{['UPLOAD', 'ANALYZE', 'MATCH', 'IDENTIFY GAPS', 'GENERATE QUESTIONS', 'BUILD ROADMAP', 'PREPARE'].map((item, index) => <div key={item}><i>{String(index + 1).padStart(2, '0')}</i><span>{item}</span></div>)}</div></section>
 

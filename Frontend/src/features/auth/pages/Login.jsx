@@ -78,7 +78,7 @@ const Login = () => {
                     aria-label="Fill test login email and password"
                 >
                     <span>Test login</span>
-                    <small>test@gmail.com &middot; this test123@</small>
+                    <small>Click to autofill</small>
                 </button>
                 <p className="auth-switch">Don't have an account? <Link to={"/register"} >Create one</Link></p>
                 </section>

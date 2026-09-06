@@ -68,6 +68,8 @@ form { display: flex; flex-direction: column; gap: 1.1rem; }
 .auth-switch a:hover { text-decoration: underline; }
 .demo-login { display: flex; flex-direction: column; gap: 0.2rem; width: 100%; padding: 0.8rem 1rem; border: 1px dashed rgba(246, 201, 69, 0.45); border-radius: 0.55rem; background: rgba(246, 201, 69, 0.06); color: #f6c945; cursor: pointer; text-align: left; font: inherit; transition: background 0.2s, border-color 0.2s; }
 .demo-login:hover { border-color: #f6c945; background: rgba(246, 201, 69, 0.12); }
+.demo-login:focus-visible { outline: 2px solid #ff2d78; outline-offset: 3px; }
+.demo-login--selected { border-style: solid; border-color: #f6c945; background: rgba(246, 201, 69, 0.14); box-shadow: 0 0 20px rgba(246, 201, 69, 0.12); }
 .demo-login span { font-size: 0.8rem; font-weight: 700; }
 .demo-login small { color: $auth-muted; font-size: 0.72rem; }
 .auth-loading { display: flex; align-items: center; gap: 0.7rem; color: $auth-muted; }

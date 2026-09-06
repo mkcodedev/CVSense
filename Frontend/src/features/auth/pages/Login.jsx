@@ -10,10 +10,12 @@ const Login = () => {
 
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
+    const [ demoSelected, setDemoSelected ] = useState(false)
 
     const useDemoLogin = () => {
         setEmail("test@gmail.com")
         setPassword("this test123@")
+        setDemoSelected(true)
     }
 
     const handleSubmit = async (e) => {
@@ -60,7 +62,12 @@ const Login = () => {
                     </div>
                     <button className='button primary-button auth-submit' type="submit">Login <span aria-hidden="true">-&gt;</span></button>
                 </form>
-                <button type="button" className="demo-login" onClick={useDemoLogin}>
+                <button
+                    type="button"
+                    className={`demo-login ${demoSelected ? "demo-login--selected" : ""}`}
+                    onClick={useDemoLogin}
+                    aria-label="Fill test login email and password"
+                >
                     <span>Test login</span>
                     <small>test@gmail.com &middot; this test123@</small>
                 </button>

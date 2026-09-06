@@ -11,8 +11,8 @@ body,
 #root {
     width: 100%;
     min-height: 100%;
-    background: #090d14;
-    color: whitesmoke;
+    background: #fafaf9;
+    color: #171717;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -39,7 +39,7 @@ body,
     gap: 0.65rem;
     padding: 0.8rem 1rem;
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-left: 3px solid #f6c945;
+    border-left: 3px solid #2563eb;
     border-radius: 0.7rem;
     background: #171e2a;
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
@@ -53,14 +53,14 @@ body,
         width: 1.35rem;
         height: 1.35rem;
         border-radius: 50%;
-        background: #f6c945;
-        color: #111923;
+        background: #2563eb;
+        color: white;
         font-weight: 800;
     }
 
     &--error {
-        border-left-color: #ff4d78;
-        span { background: #ff4d78; color: white; }
+        border-left-color: #dc2626;
+        span { background: #dc2626; color: white; }
     }
 }
 
@@ -75,8 +75,8 @@ body,
     gap: 0.85rem;
     width: 100%;
     padding: 0.7rem 1rem;
-    background: #f6d34f;
-    color: #111;
+    background: #0a0a0a;
+    color: #ffffff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.18);
     position: fixed;
     top: 0;
@@ -87,7 +87,7 @@ body,
 
     &__label {
         flex-shrink: 0;
-        color: #d61f45;
+        color: #93b5ff;
         font-weight: 800;
         letter-spacing: 0.04em;
         text-transform: uppercase;
@@ -97,10 +97,10 @@ body,
         flex: 1;
         font-size: 0.92rem;
         line-height: 1.35;
-        color: #111;
+        color: #ffffff;
     }
 }
 
 .highlight{
-    color: #d20d3b;
+    color: #2563eb;
 }

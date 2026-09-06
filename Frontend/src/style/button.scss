@@ -10,17 +10,17 @@
     transition: all 0.3s ease-in-out;
 
     &.primary-button{
-        background-color: #e1034d;
+        background-color: #2563eb;
         color: white;
     }
 
     &.secondary-button{
         background-color: transparent;
-        color: #f6c945;
-        border: 1px solid rgba(246, 201, 69, 0.35);
+        color: #171717;
+        border: 1px solid #e5e5e5;
 
         &:hover{
-            background-color: rgba(246, 201, 69, 0.08);
+            background-color: #f7f7f5;
         }
     }
 

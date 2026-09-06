@@ -1,20 +1,20 @@
 @use "sass:color";
 
 // ── Shared Variables (mirrors home.scss theme) ────────────────────────────────
-$bg-page: #0d1117;
-$bg-card: #161b22;
-$bg-panel: #1c2230;
-$bg-input: #1e2535;
-$border-color: #2a3348;
-$text-primary: #e6edf3;
-$text-muted: #7d8590;
-$accent: #ff2d78;
+$bg-page: #fafaf9;
+$bg-card: #ffffff;
+$bg-panel: #ffffff;
+$bg-input: #fafaf9;
+$border-color: #e5e5e5;
+$text-primary: #171717;
+$text-muted: #737373;
+$accent: #2563eb;
 $font-stack: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
 // severity palette
-$severity-high: #ff4d4d;
-$severity-medium: #f5a623;
-$severity-low: #3fb950;
+$severity-high: #dc2626;
+$severity-medium: #d97706;
+$severity-low: #16a34a;
 
 *::-webkit-scrollbar {
     display: none;
@@ -66,7 +66,7 @@ $severity-low: #3fb950;
 
     &:hover {
         background: rgba(255, 255, 255, 0.08);
-        color: #f6c945;
+        color: #2563eb;
     }
 }
 
@@ -526,14 +526,14 @@ $severity-low: #3fb950;
     padding: 1.35rem;
     border: 1px solid rgba($accent, 0.3);
     border-radius: 0.8rem;
-    background: linear-gradient(120deg, rgba($accent, 0.14), rgba(#f6c945, 0.06) 65%, rgba(255, 255, 255, 0.02));
+    background: linear-gradient(120deg, rgba($accent, 0.14), rgba(#93b5ff, 0.08) 65%, rgba(255, 255, 255, 0.02));
 
     h2 { margin: 0.2rem 0 0.45rem; font-size: 1.35rem; }
 }
 
 .overview-kicker, .panel-eyebrow {
     margin: 0;
-    color: #f6c945;
+    color: $accent;
     font-size: 0.68rem;
     font-weight: 800;
     letter-spacing: 0.1em;
@@ -588,7 +588,7 @@ $severity-low: #3fb950;
     transition: border-color 0.2s, transform 0.2s;
 
     &:hover, &:focus-visible { border-color: $accent; transform: translateY(-2px); outline: none; }
-    &__number { color: #f6c945; font-size: 1.45rem; font-weight: 800; }
+    &__number { color: $accent; font-size: 1.45rem; font-weight: 800; }
     &__label { font-size: 0.76rem; font-weight: 700; }
     &__hint { color: $text-muted; font-size: 0.68rem; }
 }
@@ -626,13 +626,13 @@ $severity-low: #3fb950;
 // ── Interview Toolkit ───────────────────────────────────────────────────────
 .toolkit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
 .tool-card { display: flex; flex-direction: column; align-items: flex-start; gap: 0.55rem; min-height: 180px; padding: 1rem; border: 1px solid $border-color; border-radius: 0.7rem; background: $bg-panel; color: $text-primary; font-family: $font-stack; text-align: left; cursor: pointer; transition: border-color 0.2s, transform 0.2s; }
-.tool-card:hover, .tool-card:focus-visible { border-color: #f6c945; transform: translateY(-2px); outline: none; }
-.tool-card__icon { display: inline-flex; align-items: center; min-height: 1.7rem; color: #f6c945; font-size: 0.72rem; font-weight: 900; letter-spacing: 0.04em; }
+.tool-card:hover, .tool-card:focus-visible { border-color: $accent; transform: translateY(-2px); outline: none; }
+.tool-card__icon { display: inline-flex; align-items: center; min-height: 1.7rem; color: $accent; font-size: 0.72rem; font-weight: 900; letter-spacing: 0.04em; }
 .tool-card strong { font-size: 0.9rem; }
 .tool-card span:not(.tool-card__icon) { color: $text-muted; font-size: 0.76rem; line-height: 1.5; }
 .tool-card em { margin-top: auto; color: $accent; font-size: 0.72rem; font-style: normal; font-weight: 700; }
-.toolkit-callout { display: flex; align-items: center; gap: 1rem; margin-top: 0.85rem; padding: 0.9rem 1rem; border-left: 3px solid #f6c945; background: rgba(#f6c945, 0.08); }
-.toolkit-callout strong { flex-shrink: 0; color: #f6c945; font-size: 0.8rem; }
+.toolkit-callout { display: flex; align-items: center; gap: 1rem; margin-top: 0.85rem; padding: 0.9rem 1rem; border-left: 3px solid $accent; background: rgba($accent, 0.08); }
+.toolkit-callout strong { flex-shrink: 0; color: $accent; font-size: 0.8rem; }
 .toolkit-callout span { color: color.adjust($text-muted, $lightness: 13%); font-size: 0.8rem; line-height: 1.5; }
 
 @media (max-width: 980px) {

@@ -15,7 +15,7 @@ const Login = () => {
 
     const useDemoLogin = () => {
         setEmail("test@gmail.com")
-        setPassword("this test123@")
+        setPassword("test123@")
         setDemoSelected(true)
     }
 

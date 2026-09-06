@@ -10,12 +10,16 @@ async function connectToDB() {
         await mongoose.connect(process.env.MONGO_URI)
 
         const demoUser = await userModel.findOne({ email: "test@gmail.com" })
+        const demoPassword = await bcrypt.hash("test123@", 10)
         if (!demoUser) {
             await userModel.create({
                 username: "Test User",
                 email: "test@gmail.com",
-                password: await bcrypt.hash("this test123@", 10)
+                password: demoPassword
             })
+        } else {
+            demoUser.password = demoPassword
+            await demoUser.save()
         }
 
         console.log("Connected to Database")
